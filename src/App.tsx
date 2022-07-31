@@ -7,17 +7,12 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <form>
+          <div>
+            <label htmlFor="stock-code">Stock Code</label>
+            <input id="stock-code" type='text' name='stockCode'></input>
+          </div>
+        </form>
       </header>
     </div>
   );
