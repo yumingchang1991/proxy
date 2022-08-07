@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/proxy/static/css/main.073c9b0a.css",
-    "main.js": "/proxy/static/js/main.f10b564e.js",
-    "static/js/787.cda612ba.chunk.js": "/proxy/static/js/787.cda612ba.chunk.js",
-    "static/media/logo.svg": "/proxy/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "index.html": "/proxy/index.html",
-    "main.073c9b0a.css.map": "/proxy/static/css/main.073c9b0a.css.map",
-    "main.f10b564e.js.map": "/proxy/static/js/main.f10b564e.js.map",
-    "787.cda612ba.chunk.js.map": "/proxy/static/js/787.cda612ba.chunk.js.map"
+    "main.css": "/proxy-frontend/static/css/main.073c9b0a.css",
+    "main.js": "/proxy-frontend/static/js/main.cc50a1c8.js",
+    "static/js/787.cda612ba.chunk.js": "/proxy-frontend/static/js/787.cda612ba.chunk.js",
+    "static/media/logo.svg": "/proxy-frontend/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/proxy-frontend/index.html",
+    "main.073c9b0a.css.map": "/proxy-frontend/static/css/main.073c9b0a.css.map",
+    "main.cc50a1c8.js.map": "/proxy-frontend/static/js/main.cc50a1c8.js.map",
+    "787.cda612ba.chunk.js.map": "/proxy-frontend/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.f10b564e.js"
+    "static/js/main.cc50a1c8.js"
   ]
 }
