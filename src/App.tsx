@@ -6,12 +6,12 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <form>
+        <form action="http://trackportfolio-env-1.eba-gswabkju.ap-southeast-1.elasticbeanstalk.com/eod/latest" method="POST">
           <div>
-            <label htmlFor="stock-code">Stock Code</label>
-            <input id="stock-code" type='text' name='stockCode'></input>
+            <label htmlFor="stock-code">Stock Symbol</label>
+            <input id="stock-symbol" type='text' name='symbol' value='VTI'></input>
           </div>
+          <button type="submit">get price</button>
         </form>
       </header>
     </div>
