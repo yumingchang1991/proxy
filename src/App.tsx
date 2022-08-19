@@ -13,7 +13,7 @@ function App() {
         <p>HTTP request from HTTPS site is blocked by browser, so there will be warning.</p>
         <p>If HTTP request sent successfully, AWS server returns JSON object as below:</p>
         <code>{codeExample}</code>
-        <form action="http://trackportfolio-env-1.eba-gswabkju.ap-southeast-1.elasticbeanstalk.com/eod/latest" method="POST">
+        <form action="http://trackportfolio-env-1.eba-gswabkju.ap-southeast-1.elasticbeanstalk.com/api/eod/latest" method="POST">
           <div>
             <label htmlFor="stock-symbol">Stock Symbol</label>
             <input id="stock-symbol" type='text' name='symbol' value='VTI'></input>
@@ -24,7 +24,7 @@ function App() {
       <main className="App-header">
         <h2>This will sent to Heroku HTTPS Server</h2>
         <p>the production code is based on Heroku server becasue of HTTPS</p>
-        <form action="https://etf-tracker.herokuapp.com/eod/latest" method="POST">
+        <form action="https://etf-tracker.herokuapp.com/api/eod/latest" method="POST">
           <div>
             <label htmlFor="stock-symbol">Stock Symbol</label>
             <input id="stock-symbol" type='text' name='symbol' value='VTI'></input>
