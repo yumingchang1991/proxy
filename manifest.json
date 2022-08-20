@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "ETF Tracker",
+  "name": "US ETF Tracker by Yu-Ming",
   "icons": [
     {
       "src": "favicon.ico",
