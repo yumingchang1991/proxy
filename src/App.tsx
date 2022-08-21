@@ -27,6 +27,7 @@ function App() {
                 axios
                   .post(apiEndPoint.href, { symbol })
                   .then((apiRes: any[any]) => {
+                    console.log('apiRes: ', apiRes)
                     apiRes.forEach((etf: any) => {
                       const { symbol, date, close, dividend } = etf
                       setEtfData((existingData: any) => {
