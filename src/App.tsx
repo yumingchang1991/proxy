@@ -17,23 +17,29 @@ function App() {
           <InputSymbol />
           <SendButton eventHandler={
             function submitSymbolToHeroku() {
+              const targetInput: HTMLInputElement | null = document.querySelector('#heroku-form input')
               const BASE_URL = "https://etf-tracker.herokuapp.com/"
               const apiEndPoint = new URL(BASE_URL)
-              apiEndPoint.pathname = '/api/eod/latest'
-
-              const targetInput: HTMLInputElement | null = document.querySelector('#heroku-form input')
+              
               if (targetInput) {
                 const symbol = targetInput.value
+                apiEndPoint.pathname = `/api/${symbol}/eod`
+                
                 axios
-                  .post(apiEndPoint.href, { symbol })
+                  .get(apiEndPoint.href)
                   .then((apiRes: any[any]) => {
-                    apiRes.data.data.forEach((etf: any) => {
+                    apiRes.data.forEach((etf: any) => {
                       const { symbol, date, close, dividend } = etf
+                      const requestedETF = {
+                        symbol,
+                        date: new Date(date).toLocaleDateString(),
+                        close,
+                        dividend
+                      }
                       setEtfData((existingData: any) => {
-                        return [...existingData, { symbol, date, close, dividend }]
+                        return [...existingData, requestedETF]
                       })
                     })
-                    console.log(etfData)
                   })
               }
             }
@@ -50,21 +56,26 @@ function App() {
             function submitSymbolToAWS() {
               const BASE_URL = "http://trackportfolio-env-1.eba-gswabkju.ap-southeast-1.elasticbeanstalk.com/"
               const apiEndPoint = new URL(BASE_URL)
-              apiEndPoint.pathname = '/api/eod/latest'
-
               const targetInput: HTMLInputElement | null = document.querySelector('#aws-form input')
+
               if (targetInput) {
-                const symbol = targetInput.textContent
+                const symbol = targetInput.value
+                apiEndPoint.pathname = `/api/${symbol}/eod`
                 axios
-                  .post(apiEndPoint.href, { symbol })
+                  .get(apiEndPoint.href)
                   .then((apiRes: any[any]) => {
-                    apiRes.forEach((etf: any) => {
+                    apiRes.data.forEach((etf: any) => {
                       const { symbol, date, close, dividend } = etf
+                      const requestedETF = {
+                        symbol,
+                        date: new Date(date).toLocaleDateString(),
+                        close,
+                        dividend
+                      }
                       setEtfData((existingData: any) => {
-                        return [...existingData, { symbol, date, close, dividend }]
+                        return [...existingData, requestedETF]
                       })
                     })
-                    console.log(etfData)
                   })
               }
             }
