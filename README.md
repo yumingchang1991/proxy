@@ -1,6 +1,6 @@
 # ETF Tracker
 
-This project is a simple demonstration of using a proxy server to request data from a third party API.
+[ETF Tracker](https://yumingchang1991.github.io/proxy-frontend/) is a simple demonstration of using a proxy server to request data from a third party API.
 
 [Marketstack](https://marketstack.com/documentation) is the third party API used in this project.
 
@@ -10,9 +10,10 @@ This is the frontend repo, deployed to GitHub Pages, for [ETF Tracker](https://y
 
 # Frontend Techstack
 
-- React
 - TypeScript
+- React & MUI
 - GitHub Pages
+- axios
 
 # Frontend Description
 
