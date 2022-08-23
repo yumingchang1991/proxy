@@ -27,18 +27,16 @@ function App() {
                 
                 axios
                   .get(apiEndPoint.href)
-                  .then((apiRes: any[any]) => {
-                    apiRes.data.forEach((etf: any) => {
-                      const { symbol, date, close, dividend } = etf
-                      const requestedETF = {
-                        symbol,
-                        date: new Date(date).toLocaleDateString(),
-                        close,
-                        dividend
-                      }
-                      setEtfData((existingData: any) => {
-                        return [...existingData, requestedETF]
-                      })
+                  .then((apiRes: any) => {
+                    const { symbol, date, close, dividend } = apiRes.data
+                    const requestedETF = {
+                      symbol,
+                      date: new Date(date).toLocaleDateString(),
+                      close,
+                      dividend
+                    }
+                    setEtfData((existingData: any) => {
+                      return [...existingData, requestedETF]
                     })
                   })
               }
