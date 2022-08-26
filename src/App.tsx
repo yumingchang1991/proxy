@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import './App.css'
+import Features from './components/Features'
 import InputSymbol from './components/InputSymbol'
 import SendButton from './components/SendButton'
 import DataTable from './components/DataTable'
-
 
 function App() {
   const [etfData, setEtfData] = useState<any[any]>([])
@@ -53,7 +53,7 @@ function App() {
         </form>
         <DataTable etfArray={etfData} />
       </main>
-      
+      <Features />
     </div>
   )
 }
