@@ -29,12 +29,20 @@ function App() {
                   .get(apiEndPoint.href)
                   .then((apiRes: any) => {
                     const { symbol, date, close, dividend } = apiRes.data
+                    const formatDate = new Date(date).toLocaleDateString()
                     const requestedETF = {
                       symbol,
-                      date: new Date(date).toLocaleDateString(),
+                      date: formatDate,
                       close,
                       dividend
                     }
+
+                    const sameETFs = etfData.filter((etf: any) => etf.symbol === requestedETF.symbol)
+                    if (sameETFs.length === 0) return
+                    
+                    const sameDateETFs = sameETFs.filter((etf: any) => etf.date === requestedETF.date)
+                    if (sameDateETFs.length === 0) return
+
                     setEtfData((existingData: any) => {
                       return [...existingData, requestedETF]
                     })
@@ -45,42 +53,7 @@ function App() {
         </form>
         <DataTable etfArray={etfData} />
       </main>
-      <main className="App-header">
-        <h2>This will sent to AWS HTTP server</h2>
-        <p>I haven't bought a domain to make it secure ...</p>
-        <form id="aws-form">
-          <InputSymbol />
-          <SendButton eventHandler={
-            function submitSymbolToAWS() {
-              const BASE_URL = "http://trackportfolio-env-1.eba-gswabkju.ap-southeast-1.elasticbeanstalk.com/"
-              const apiEndPoint = new URL(BASE_URL)
-              const targetInput: HTMLInputElement | null = document.querySelector('#aws-form input')
-
-              if (targetInput) {
-                const symbol = targetInput.value
-                apiEndPoint.pathname = `/api/${symbol}/eod`
-                axios
-                  .get(apiEndPoint.href)
-                  .then((apiRes: any[any]) => {
-                    apiRes.data.forEach((etf: any) => {
-                      const { symbol, date, close, dividend } = etf
-                      const requestedETF = {
-                        symbol,
-                        date: new Date(date).toLocaleDateString(),
-                        close,
-                        dividend
-                      }
-                      setEtfData((existingData: any) => {
-                        return [...existingData, requestedETF]
-                      })
-                    })
-                  })
-              }
-            }
-          }  />
-        </form>
-        <DataTable etfArray={etfData} />
-      </main>
+      
     </div>
   )
 }
