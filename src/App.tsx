@@ -38,10 +38,10 @@ function App() {
                     }
 
                     const sameETFs = etfData.filter((etf: any) => etf.symbol === requestedETF.symbol)
-                    if (sameETFs.length === 0) return
-                    
-                    const sameDateETFs = sameETFs.filter((etf: any) => etf.date === requestedETF.date)
-                    if (sameDateETFs.length === 0) return
+                    if (sameETFs.length > 0) {
+                      const sameDateETFs = sameETFs.filter((etf: any) => etf.date === requestedETF.date)
+                      if (sameDateETFs.length > 0) return
+                    }
 
                     setEtfData((existingData: any) => {
                       return [...existingData, requestedETF]
