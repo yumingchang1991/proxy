@@ -6,18 +6,18 @@
 
 # Frontend Repo
 
-This is the frontend repo, deployed to GitHub Pages, for [ETF Tracker](https://yumingchang1991.github.io/proxy-frontend/).
+This is the frontend repo, deployed to GitHub Pages.
 
 # Frontend Techstack
 
 - TypeScript
 - React & MUI
 - GitHub Pages
-- axios
+- Axios
 
 # Frontend Description
 
-It is a single page application created by Create React App, with TypeScript enabled.
+It is a React application with TypeScript.
 
 It includes a simple user interface to gather input from user, and then send it to proxy server.
 
