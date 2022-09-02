@@ -12,13 +12,13 @@ function App() {
   return (
     <div className="App">
       <main className="App-header">
-        <h2>This will sent to Heroku HTTPS Server</h2>
-        <form id="heroku-form">
+        <h2>Please enter a valid ETF Symbol</h2>
+        <form id="aws-form">
           <InputSymbol />
           <SendButton eventHandler={
             function submitSymbolToHeroku() {
-              const targetInput: HTMLInputElement | null = document.querySelector('#heroku-form input')
-              const BASE_URL = "https://etf-tracker.herokuapp.com/"
+              const targetInput: HTMLInputElement | null = document.querySelector('#aws-form input')
+              const BASE_URL = "https://etf-tracker.link/"
               const apiEndPoint = new URL(BASE_URL)
               
               if (targetInput) {

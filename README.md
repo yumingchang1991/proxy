@@ -21,8 +21,5 @@ It is a React application with TypeScript.
 
 It includes a simple user interface to gather input from user, and then send it to proxy server.
 
-Check out the repo for [Proxy Server](https://github.com/yumingchang1991/proxy-backend-heroku) for its design.
-
 # Repo Navigation
-[to Backend Repo (Heroku)](https://github.com/yumingchang1991/proxy-backend-heroku)
-[to Backend Repo (AWS)](https://github.com/yumingchang1991/proxy-backend)
+[to Backend Repo (AWS Proxy Server)](https://github.com/yumingchang1991/proxy-backend)
