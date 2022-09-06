@@ -3,6 +3,9 @@ import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
+import FeaturesDevelopedTable from './FeaturesDevelopedTable'
+import FeaturesComingTable from './FeaturesComingTable'
+import FeaturesReferenceLink from './FeaturesReferenceLink'
 
 interface TabPanelProps {
   children?: React.ReactNode,
@@ -45,7 +48,7 @@ export default function Features () {
   }
 
   return (
-    <main className="App-header">
+    <main className="features-section">
       <h1>Features</h1>
       <Box sx={{ width: '100%', maxWidth: '800px' }}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -56,15 +59,13 @@ export default function Features () {
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
-          basic API call & simple UI
+          <FeaturesDevelopedTable />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          Export data as CSV
+          <FeaturesComingTable />
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <a href='https://github.com/yumingchang1991/proxy-frontend'>Frontend Repo</a>
-          <br />
-          <a href='https://github.com/yumingchang1991/proxy-backend-heroku'>Backend Repo</a>
+          <FeaturesReferenceLink />
         </TabPanel>
       </Box>
     </main>

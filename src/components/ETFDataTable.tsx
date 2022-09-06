@@ -14,27 +14,10 @@ interface etf {
   dividend: number
 }
 
-function createData(
-  symbol: string,
-  close: number,
-  date: string,
-  dividend: number
-) {
-  return { symbol, close, date, dividend }
-}
-
-const rows = [
-  createData('AABC', 159, new Date().toLocaleDateString(), 24),
-  createData('VTI', 237, new Date().toLocaleDateString(), 37),
-  createData('BND', 262, new Date().toLocaleDateString(), 24),
-  createData('EIED', 305, new Date().toLocaleDateString(), 67),
-  createData('BNDG', 356, new Date().toLocaleDateString(), 49),
-]
-
-export default function BasicTable({ etfArray }: any[any]) {
+export default function BasicTable({ etfArray }: {etfArray: etf[]}) {
   return (
     <TableContainer component={Paper} sx={{ maxWidth: 800, maxHeight: 300, marginInline: 'auto', marginBlock: '1rem' }}>
-      <Table stickyHeader  aria-label="simple table">
+      <Table stickyHeader  aria-label="ETF data table">
         <TableHead>
           <TableRow>
             <TableCell align="right">Date</TableCell>

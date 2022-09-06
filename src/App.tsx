@@ -4,19 +4,19 @@ import './App.css'
 import Features from './components/Features'
 import InputSymbol from './components/InputSymbol'
 import SendButton from './components/SendButton'
-import DataTable from './components/DataTable'
+import ETFDataTable from './components/ETFDataTable'
 
 function App() {
   const [etfData, setEtfData] = useState<any[any]>([])
 
   return (
     <div className="App">
-      <main className="App-header">
-        <h2>Please enter a valid ETF Symbol</h2>
+      <main className="landing-section">
+        <h2>Please enter US ETF Symbol</h2>
         <form id="aws-form">
           <InputSymbol />
           <SendButton eventHandler={
-            function submitSymbolToHeroku() {
+            function submitSymbolToProxyServer() {
               const targetInput: HTMLInputElement | null = document.querySelector('#aws-form input')
               const BASE_URL = "https://etf-tracker.link/"
               const apiEndPoint = new URL(BASE_URL)
@@ -51,7 +51,7 @@ function App() {
             }
           } />
         </form>
-        <DataTable etfArray={etfData} />
+        <ETFDataTable etfArray={etfData} />
       </main>
       <Features />
     </div>
