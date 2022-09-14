@@ -5,12 +5,10 @@ import TextField from '@mui/material/TextField'
 export default function BasicTextFields() {
   return (
     <Box
-      component="form"
+      component='div'
       sx={{
         '& > :not(style)': { m: 1, width: '25ch' },
       }}
-      noValidate
-      autoComplete="off"
     >
       <TextField id="standard-basic" label="ETF Symbol" name="symbol" defaultValue="VTI" variant="standard" required={true} />
     </Box>

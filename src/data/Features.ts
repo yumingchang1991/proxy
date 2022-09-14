@@ -41,6 +41,12 @@ const FEATURES: feature[] = [
     group: 'UX',
     feature: 'Complete Features section on landing page',
     completedAt: '2022-09-06'
+  },
+  {
+    key: 7,
+    group: 'UX',
+    feature: 'Inplement JWT Auth through React State and Router',
+    completedAt: '2022-09-14'
   }
 ]
 

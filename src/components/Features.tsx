@@ -1,3 +1,4 @@
+import '../styles/features.css'
 import * as React from 'react'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
@@ -7,6 +8,8 @@ import FeaturesDevelopedTable from './FeaturesDevelopedTable'
 import FeaturesComingTable from './FeaturesComingTable'
 import FeaturesReferenceLink from './FeaturesReferenceLink'
 
+import useAuth from '../hooks/useAuth'
+
 interface TabPanelProps {
   children?: React.ReactNode,
   index: number,
@@ -15,7 +18,8 @@ interface TabPanelProps {
 
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props
-
+  const { auth } = useAuth()
+  console.log(auth)
   return (
     <div
       role="tabpanel"

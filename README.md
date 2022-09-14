@@ -24,6 +24,14 @@ It includes a simple user interface to gather input from user, and then send it 
 # Repo Navigation
 [to Backend Repo (AWS Proxy Server)](https://github.com/yumingchang1991/proxy-backend)
 
+# Frontend Routes
+| Access | Path                        | Desciption                                        |
+| ------ | --------------------------- | ------------------------------------------------- |
+| ALL    | `/proxy-frontend/login`     |  login page                                       |
+| ALL    | `/proxy-frontend/register`  |  member signup page                               |
+| User   | `/proxy-frontend/features`  |  display features and roadmap of this application |
+| User   | `/proxy-frontend/`          |  display portfolio page                           |
+
 # Roadmap
 
 | Group | Feature                                      | Progress    | Completed At |
@@ -33,8 +41,9 @@ It includes a simple user interface to gather input from user, and then send it 
 | Infra | Set up rate limiter for application          | completed   | 2022-08-19   |
 | UX    | Cache route response                         | completed   | 2022-08-20   |
 | Infra | Set up HTTPS through AWS Route 53            | completed   | 2022-09-02   |
+| UX    | Complete Features section on landing page    | completed   | 2022-09-06   |
+| UX    | Set up Reat Router                           | developing  | x |
 | Data  | Handle error for invalid ETF Ssymbol         | developing  | x |
-| UX    | Complete Features section on landing page    | developing  | x |
 | Data  | Export ETF data as csv file                  | developing  | x |
 | Data  | Group ETF data as portfolio                  | not yet     | x |
 | Data  | Set up api route to get multiple ETF data    | not yet     | x |

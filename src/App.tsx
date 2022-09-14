@@ -1,60 +1,26 @@
-import React, { useState } from 'react'
-import axios from 'axios'
-import './App.css'
+import './styles/App.css'
+import { Routes, Route} from 'react-router-dom'
+import Layout from './components/Layout'
+import Portfolio from './components/Portfolio'
 import Features from './components/Features'
-import InputSymbol from './components/InputSymbol'
-import SendButton from './components/SendButton'
-import ETFDataTable from './components/ETFDataTable'
+import Login from './components/Login'
+import Register from './components/Register'
+import RequireAuth from './components/RequireAuth'
 
-function App() {
-  const [etfData, setEtfData] = useState<any[any]>([])
-
+function App () {
   return (
-    <div className="App">
-      <main className="landing-section">
-        <h2>Please enter US ETF Symbol</h2>
-        <form id="aws-form">
-          <InputSymbol />
-          <SendButton eventHandler={
-            function submitSymbolToProxyServer() {
-              const targetInput: HTMLInputElement | null = document.querySelector('#aws-form input')
-              const BASE_URL = "https://etf-tracker.link/"
-              const apiEndPoint = new URL(BASE_URL)
-              
-              if (targetInput) {
-                const symbol = targetInput.value
-                apiEndPoint.pathname = `/api/${symbol}/eod`
-                
-                axios
-                  .get(apiEndPoint.href)
-                  .then((apiRes: any) => {
-                    const { symbol, date, close, dividend } = apiRes.data
-                    const formatDate = new Date(date).toLocaleDateString()
-                    const requestedETF = {
-                      symbol,
-                      date: formatDate,
-                      close,
-                      dividend
-                    }
-
-                    const sameETFs = etfData.filter((etf: any) => etf.symbol === requestedETF.symbol)
-                    if (sameETFs.length > 0) {
-                      const sameDateETFs = sameETFs.filter((etf: any) => etf.date === requestedETF.date)
-                      if (sameDateETFs.length > 0) return
-                    }
-
-                    setEtfData((existingData: any) => {
-                      return [...existingData, requestedETF]
-                    })
-                  })
-              }
-            }
-          } />
-        </form>
-        <ETFDataTable etfArray={etfData} />
-      </main>
-      <Features />
-    </div>
+    <Routes>
+      <Route path='/' element={<Layout />}>
+        <Route path='proxy-frontend/login' element={<Login />} />
+        <Route path='proxy-frontend/register' element={<Register />} />
+        
+        <Route element={<RequireAuth />}>
+          <Route path='proxy-frontend/features' element={<Features />} />
+          <Route path='proxy-frontend' element={<Portfolio />} />
+        </Route>
+        
+      </Route>
+    </Routes>
   )
 }
 
