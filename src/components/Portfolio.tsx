@@ -12,8 +12,6 @@ function App() {
   const navigate = useNavigate()
   const location = useLocation()
 
-  
-
   return (
     <main className="portfolio-section">
       <h2>Please enter US ETF Symbol</h2>
