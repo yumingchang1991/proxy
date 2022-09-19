@@ -19,7 +19,7 @@ interface TabPanelProps {
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props
   const { auth } = useAuth()
-  console.log(auth)
+
   return (
     <div
       role="tabpanel"
