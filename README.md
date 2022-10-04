@@ -43,7 +43,6 @@ It includes a simple user interface to gather input from user, and then send it 
 | Infra | Set up HTTPS through AWS Route 53                    | completed   | 2022-09-02   |
 | UX    | Complete Features section on landing page            | completed   | 2022-09-06   |
 | UX    | Inplement JWT Auth through React State and Router    | completed   | 2022-09-14   |
-| UX    | Set up Reat Router                                   | developing  | x |
 | Data  | Handle error for invalid ETF Ssymbol                 | developing  | x |
 | Data  | Export ETF data as csv file                          | developing  | x |
 | Data  | Group ETF data as portfolio                          | not yet     | x |
