@@ -16,7 +16,7 @@ const useRefreshToken = () => {
       })
       return axiosRes.data.accessToken
     }
-    console.log(axiosRes.data.message)
+
   }
   
   return refresh
