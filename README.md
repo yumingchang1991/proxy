@@ -34,19 +34,20 @@ It includes a simple user interface to gather input from user, and then send it 
 
 # Roadmap
 
-| Group | Feature                                      | Progress    | Completed At |
-| ----- | -------------------------------------------- | ----------- | ------------ |
-| Infra | Set up AWS Server through Elastic Beanstalk  | completed   | 2022-08-06   |
-| Data  | Set up api route to get one ETF data         | completed   | 2022-08-16   |
-| Infra | Set up rate limiter for application          | completed   | 2022-08-19   |
-| UX    | Cache route response                         | completed   | 2022-08-20   |
-| Infra | Set up HTTPS through AWS Route 53            | completed   | 2022-09-02   |
-| UX    | Complete Features section on landing page    | completed   | 2022-09-06   |
-| UX    | Set up Reat Router                           | developing  | x |
-| Data  | Handle error for invalid ETF Ssymbol         | developing  | x |
-| Data  | Export ETF data as csv file                  | developing  | x |
-| Data  | Group ETF data as portfolio                  | not yet     | x |
-| Data  | Set up api route to get multiple ETF data    | not yet     | x |
-| UX    | Cache api call to get multiple ETF data      | not yet     | x |
-| UX    | Add performance hook for web monitor         | not yet     | x |
-| Data  | Use Chart.js to display portfolio            | not yet     | x |
+| Group | Feature                                              | Progress    | Completed At |
+| ----- | ---------------------------------------------------- | ----------- | ------------ |
+| Infra | Set up AWS Server through Elastic Beanstalk          | completed   | 2022-08-06   |
+| Data  | Set up api route to get one ETF data                 | completed   | 2022-08-16   |
+| Infra | Set up rate limiter for application                  | completed   | 2022-08-19   |
+| UX    | Cache route response                                 | completed   | 2022-08-20   |
+| Infra | Set up HTTPS through AWS Route 53                    | completed   | 2022-09-02   |
+| UX    | Complete Features section on landing page            | completed   | 2022-09-06   |
+| UX    | Inplement JWT Auth through React State and Router    | completed   | 2022-09-14   |
+| UX    | Set up Reat Router                                   | developing  | x |
+| Data  | Handle error for invalid ETF Ssymbol                 | developing  | x |
+| Data  | Export ETF data as csv file                          | developing  | x |
+| Data  | Group ETF data as portfolio                          | not yet     | x |
+| Data  | Set up api route to get multiple ETF data            | not yet     | x |
+| UX    | Cache api call to get multiple ETF data              | not yet     | x |
+| UX    | Add performance hook for web monitor                 | not yet     | x |
+| Data  | Use Chart.js to display portfolio                    | not yet     | x |
