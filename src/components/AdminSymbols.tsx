@@ -1,10 +1,13 @@
 import { useState } from 'react'
 import '../styles/symbols.css'
 import useAxiosPrivate from '../hooks/useAxiosPrivate'
+import LinearProgress from '@mui/material/LinearProgress'
+import { Box } from '@mui/material'
 
 export default function AdminSymbols () {
   const axiosPrivate = useAxiosPrivate()
   const [systemLog, setLog] = useState('')
+  const [displayLinearProgress, setDisplay] = useState(false)
 
   const handleUpload = () => {
     // initialize log message
@@ -21,15 +24,19 @@ export default function AdminSymbols () {
     formData.append('file', file)
 
     // set API End Point
-
     const API_ENDPOINT = `/api/symbols`
-    if (file) {
-      setLog('uploading file...')
 
+    const toggleDisplayProgress = () => {
       const fileInput: HTMLInputElement = document.querySelector('input#file-input') as HTMLInputElement
       const uploadButton: HTMLButtonElement = document.querySelector('button.upload-button') as HTMLButtonElement
-      fileInput.disabled = true
-      uploadButton.disabled = true
+      fileInput.disabled = !fileInput.disabled
+      uploadButton.disabled = !uploadButton.disabled
+      setDisplay(!displayLinearProgress)
+    }
+
+    if (file) {
+      toggleDisplayProgress()
+      setLog('uploading file...')
 
       axiosPrivate.post(
         API_ENDPOINT,
@@ -40,21 +47,26 @@ export default function AdminSymbols () {
           }
         }
       ).then(axiosRes => {
+        toggleDisplayProgress()
         setLog(axiosRes.data.message)
-        fileInput.disabled = false
-        uploadButton.disabled = false
       })
     }
   }
 
   return (
     <main className="symbols-form">
+        {
+          displayLinearProgress
+          ? <Box width='50%'><LinearProgress /></Box>
+          : ''
+        }
+        
         <div className='file-input-block'>
           <label htmlFor='file-input'>Select a file (CSV or TXT)</label>
           <input id='file-input' name='fileInput' type='file' accept='.csv, .txt' />
           <button className='upload-button' onClick={handleUpload}>Upload</button>
           {systemLog === '' ? '' : <p className='system-log'>{systemLog}</p>}
-        </div>
+        </div>  
     </main>
   )
 }
