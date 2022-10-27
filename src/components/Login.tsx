@@ -71,8 +71,8 @@ export default function Login() {
           : ''}
       </header>
       <form className="login-form">
-        <TextField id="account" label="Account" variant="standard" value={account} autoFocus required onChange={(e) => setAccount(e.target.value)} />
-        <TextField id="password" label="Password" variant="standard" type='password' value={password} required onChange={(e) => setPassword(e.target.value)} />
+        <TextField id="account" label="Account" variant="standard" value={account} autoFocus required autoComplete='username' onChange={(e) => setAccount(e.target.value)} />
+        <TextField id="password" label="Password" variant="standard" type='password' value={password} required autoComplete='current-password' onChange={(e) => setPassword(e.target.value)} />
       </form>
       <Button fullWidth={true} onClick={handleLogIn}>Submit</Button>
       <footer className='login-form-footer'>
