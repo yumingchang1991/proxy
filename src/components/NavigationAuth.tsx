@@ -4,7 +4,7 @@ import { Typography, Box, IconButton, Menu, MenuItem, Avatar, Tooltip } from '@m
 import MenuIcon from '@mui/icons-material/Menu'
 import useAuth from '../hooks/useAuth'
 import { axiosPrivate } from '../config/axios'
-const pages = ['Features']
+const pages = ['Features', 'Symbols']
 const settings = ['Logout']
 
 export default function NavigationAuth() {
@@ -39,8 +39,6 @@ export default function NavigationAuth() {
   
   return (
     <>
-      
-
       <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
         <IconButton
           size="large"
@@ -84,30 +82,28 @@ export default function NavigationAuth() {
           ))}
         </Menu>
       </Box>
-      <Typography sx={{
-        mr: 2,
-        display: { xs: 'flex', md: 'none' },
-        flexGrow: 1
-      }}>
-      <Link to="/proxy-frontend" style={{ textDecoration: 'none', color: '#252525', flexGrow: 1 }}>
-        <Typography
-          variant="h6"
-          noWrap
-          sx={{
-            mr: 2,
-            display: { xs: 'flex', md: 'none' },
-            justifyContent: 'center',
-            fontWeight: 'bold'
-          }}
-        >
-          My Portfolio
-        </Typography>
-      </Link>
-      </Typography>
+
+      <Box sx={{ display: { xs: 'flex', md: 'none'} , flexGrow: 1 }}>
+        <Link to="/proxy-frontend" style={{
+          textDecoration: 'none',
+          color: '#252525',
+          flexGrow: 1 }}>
+          <Typography
+            noWrap
+            sx={{
+              mr: 2,
+              display: { xs: 'flex', md: 'none' },
+              justifyContent: 'center',
+              fontWeight: 'bold'
+            }}
+          >
+            My Portfolio
+          </Typography>
+        </Link>
+      </Box>
 
       <Link to="/proxy-frontend" style={{ textDecoration: 'none', color: '#252525' }}>
         <Typography
-          variant="h6"
           noWrap
           sx={{
             mr: 2,
@@ -118,6 +114,7 @@ export default function NavigationAuth() {
           My Portfolio
         </Typography>
       </Link>
+
       <Box sx={{ display: { xs: 'none', md: 'flex' }, flexGrow: 1 }}>
         {pages.map((page) => (
           <MenuItem key={page} onClick={handleCloseNavMenu}>
