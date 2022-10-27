@@ -32,6 +32,7 @@ export default function AdminSymbols () {
       fileInput.disabled = !fileInput.disabled
       uploadButton.disabled = !uploadButton.disabled
       setDisplay(!displayLinearProgress)
+      console.log(displayLinearProgress)
     }
 
     if (file) {
@@ -46,7 +47,7 @@ export default function AdminSymbols () {
               headers: {
                 'Content-Type': 'multipart/form-data'
               },
-              withCredentials: false
+              withCredentials: true
             }
           )
           .then(axiosRes => {
