@@ -37,23 +37,31 @@ export default function AdminSymbols () {
     if (file) {
       toggleDisplayProgress()
       setLog('uploading file...')
-
-      axiosPrivate.post(
-        API_ENDPOINT,
-        formData,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          },
-          withCredentials: true
-        }
-      ).then(axiosRes => {
-        toggleDisplayProgress()
-        setLog(axiosRes.data.message)
-      }).catch(e => {
+      try {
+        axiosPrivate
+          .post(
+            API_ENDPOINT,
+            formData,
+            {
+              headers: {
+                'Content-Type': 'multipart/form-data'
+              },
+              withCredentials: false
+            }
+          )
+          .then(axiosRes => {
+            toggleDisplayProgress()
+            setLog(axiosRes.data.message)
+          })
+          .catch(e => {
+            toggleDisplayProgress()
+            console.error(e)
+          })
+      } catch (e) {
         toggleDisplayProgress()
         console.error(e)
-      })
+      }
+      
     }
   }
 
