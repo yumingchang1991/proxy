@@ -45,7 +45,7 @@ function App() {
                   return [...existingData, requestedETF]
                 })
               } catch (err) {
-                console.log(err)
+                console.error(err)
                 navigate('/proxy-frontend/login', { state: { from: location }, replace: true })
               }
             }

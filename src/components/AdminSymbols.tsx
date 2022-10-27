@@ -44,11 +44,15 @@ export default function AdminSymbols () {
         {
           headers: {
             'Content-Type': 'multipart/form-data'
-          }
+          },
+          withCredentials: true
         }
       ).then(axiosRes => {
         toggleDisplayProgress()
         setLog(axiosRes.data.message)
+      }).catch(e => {
+        toggleDisplayProgress()
+        console.error(e)
       })
     }
   }
