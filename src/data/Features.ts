@@ -47,6 +47,12 @@ const FEATURES: feature[] = [
     group: 'UX',
     feature: 'Inplement JWT Auth through React State and Router',
     completedAt: '2022-09-14'
+  },
+  {
+    key: 8,
+    group: 'Data',
+    feature: 'Add entry point to upload csv to set allowed ETFs (File System)',
+    completedAt: '2022-10-27'
   }
 ]
 
