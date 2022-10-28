@@ -44,8 +44,9 @@ It includes a simple user interface to gather input from user, and then send it 
 | Infra | Set up HTTPS through AWS Route 53                    | completed   | 2022-09-02   |
 | UX    | Complete Features section on landing page            | completed   | 2022-09-06   |
 | UX    | Inplement JWT Auth through React State and Router    | completed   | 2022-09-14   |
-| Data  | Add entry point to upload csv to set allowed ETFs    | completed   | 2022-10-27   |
-| Data  | Handle error for invalid ETF Ssymbol                 | developing  | x |
+| Data  | Add entry point to upload csv to set allowed ETFs    | completed   | 2022-10-28   |
+| Data  | Handle error for invalid ETF Symbol from user input  | developing  | x |
+| Data  | Handle error for invalid ETF Symbol from admin file  | developing  | x |
 | Data  | Export ETF data as csv file                          | developing  | x |
 | Data  | Group ETF data as portfolio                          | not yet     | x |
 | Data  | Set up api route to get multiple ETF data            | not yet     | x |
