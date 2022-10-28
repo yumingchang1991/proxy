@@ -12,17 +12,19 @@ export default function FeaturesDevelopedTable() {
     backgroundColor: '#E6E6E6',
     fontWeight: 'bold'
   }
-  const TSX = FEATURES.map(rowItem => (
-    <TableRow
-      key={rowItem.key}
-      hover={true}
-      sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-    >
-      <TableCell align="left">{rowItem.group}</TableCell>
-      <TableCell align="left">{rowItem.feature}</TableCell>
-      <TableCell align="left">{rowItem.completedAt}</TableCell>
-    </TableRow>
-  ))
+  const TSX = FEATURES
+    .sort((a, b) => b.key - a.key) // the most recent be on top
+    .map(rowItem => (
+      <TableRow
+        key={rowItem.key}
+        hover={true}
+        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+      >
+        <TableCell align="left">{rowItem.group}</TableCell>
+        <TableCell align="left">{rowItem.feature}</TableCell>
+        <TableCell align="left">{rowItem.completedAt}</TableCell>
+      </TableRow>
+    ))
 
   return (
     <TableContainer sx={{ maxWidth: 800, maxHeight: '50vh', marginInline: 'auto', marginBlock: '1rem' }}>

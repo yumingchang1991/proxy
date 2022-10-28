@@ -51,8 +51,8 @@ const FEATURES: feature[] = [
   {
     key: 8,
     group: 'Data',
-    feature: 'Add entry point to upload csv to set allowed ETFs (File System)',
-    completedAt: '2022-10-27'
+    feature: 'Implement Node file system to accept CSV file from admin user to manage Allowed ETF Symbols',
+    completedAt: '2022-10-28'
   }
 ]
 
