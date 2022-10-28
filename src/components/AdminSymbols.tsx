@@ -31,8 +31,7 @@ export default function AdminSymbols () {
       const uploadButton: HTMLButtonElement = document.querySelector('button.upload-button') as HTMLButtonElement
       fileInput.disabled = !fileInput.disabled
       uploadButton.disabled = !uploadButton.disabled
-      setDisplay(!displayLinearProgress)
-      console.log(displayLinearProgress)
+      setDisplay(prevState => !prevState)
     }
 
     if (file) {
