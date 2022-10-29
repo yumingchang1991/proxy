@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/proxy-frontend/static/css/main.f92c30ca.css",
-    "main.js": "/proxy-frontend/static/js/main.a1665f0f.js",
+    "main.css": "/proxy-frontend/static/css/main.ed5e3473.css",
+    "main.js": "/proxy-frontend/static/js/main.6e81663c.js",
     "index.html": "/proxy-frontend/index.html",
-    "main.f92c30ca.css.map": "/proxy-frontend/static/css/main.f92c30ca.css.map",
-    "main.a1665f0f.js.map": "/proxy-frontend/static/js/main.a1665f0f.js.map"
+    "main.ed5e3473.css.map": "/proxy-frontend/static/css/main.ed5e3473.css.map",
+    "main.6e81663c.js.map": "/proxy-frontend/static/js/main.6e81663c.js.map"
   },
   "entrypoints": [
-    "static/css/main.f92c30ca.css",
-    "static/js/main.a1665f0f.js"
+    "static/css/main.ed5e3473.css",
+    "static/js/main.6e81663c.js"
   ]
 }
