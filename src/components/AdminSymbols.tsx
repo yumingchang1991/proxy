@@ -17,7 +17,7 @@ export default function AdminSymbols () {
     const fileInput: HTMLInputElement = document.querySelector('#file-input') as HTMLInputElement
     const fileList: FileList = fileInput.files as FileList
     const file: File = fileList[0]
-    if (!file) setLog('Please select a file to upload')
+    if (!file) return setLog('Please select a file to upload')
 
     // save the file object to formdata
     const formData: FormData = new FormData()
@@ -34,34 +34,30 @@ export default function AdminSymbols () {
       setDisplay(prevState => !prevState)
     }
 
-    if (file) {
-      toggleDisplayProgress()
-      setLog('uploading file...')
-      try {
-        axiosPrivate
-          .post(
-            API_ENDPOINT,
-            formData,
-            {
-              headers: {
-                'Content-Type': 'multipart/form-data'
-              },
-              withCredentials: true
+    toggleDisplayProgress()
+    setLog('uploading file...')
+    try {
+      axiosPrivate
+        .post(
+          API_ENDPOINT,
+          formData,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data'
             }
-          )
-          .then(axiosRes => {
-            toggleDisplayProgress()
-            setLog(axiosRes.data.message)
-          })
-          .catch(e => {
-            toggleDisplayProgress()
-            console.error(e)
-          })
-      } catch (e) {
-        toggleDisplayProgress()
-        console.error(e)
-      }
-      
+          }
+        )
+        .then(axiosRes => {
+          toggleDisplayProgress()
+          setLog(axiosRes.data.message)
+        })
+        .catch(e => {
+          toggleDisplayProgress()
+          console.error(e)
+        })
+    } catch (e) {
+      toggleDisplayProgress()
+      console.error(e)
     }
   }
 
