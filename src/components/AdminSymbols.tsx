@@ -9,7 +9,15 @@ export default function AdminSymbols () {
   const [systemLog, setLog] = useState('')
   const [displayLinearProgress, setDisplay] = useState(false)
 
-  const handleUpload = () => {
+  const toggleDisplayProgress = () => {
+    const fileInput: HTMLInputElement = document.querySelector('input#file-input') as HTMLInputElement
+    const uploadButton: HTMLButtonElement = document.querySelector('button.upload-button') as HTMLButtonElement
+    fileInput.disabled = !fileInput.disabled
+    uploadButton.disabled = !uploadButton.disabled
+    setDisplay(prevState => !prevState)
+  }
+
+  const handleUpload = async () => {
     // initialize log message
     setLog('')
 
@@ -26,38 +34,28 @@ export default function AdminSymbols () {
     // set API End Point
     const API_ENDPOINT = `/api/symbols`
 
-    const toggleDisplayProgress = () => {
-      const fileInput: HTMLInputElement = document.querySelector('input#file-input') as HTMLInputElement
-      const uploadButton: HTMLButtonElement = document.querySelector('button.upload-button') as HTMLButtonElement
-      fileInput.disabled = !fileInput.disabled
-      uploadButton.disabled = !uploadButton.disabled
-      setDisplay(prevState => !prevState)
-    }
-
     toggleDisplayProgress()
     setLog('uploading file...')
+
+    let axiosRes
     try {
-      axiosPrivate
-        .post(
-          API_ENDPOINT,
-          formData,
-          {
-            headers: {
-              'Content-Type': 'multipart/form-data'
-            }
+      axiosRes = await axiosPrivate.post(
+        API_ENDPOINT,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data'
           }
-        )
-        .then(axiosRes => {
-          toggleDisplayProgress()
-          setLog(axiosRes.data.message)
-        })
-        .catch(e => {
-          toggleDisplayProgress()
-          console.error(e)
-        })
+        }
+      )
     } catch (e) {
       toggleDisplayProgress()
       console.error(e)
+    }
+
+    if (axiosRes) {
+      toggleDisplayProgress()
+      setLog(axiosRes.data.message)
     }
   }
 
@@ -73,7 +71,7 @@ export default function AdminSymbols () {
           <label htmlFor='file-input'>Select a file (CSV or TXT)</label>
           <input id='file-input' name='fileInput' type='file' accept='.csv, .txt' />
           <button className='upload-button' onClick={handleUpload}>Upload</button>
-          {systemLog === '' ? '' : <p className='system-log'>{systemLog}</p>}
+          {systemLog === '' ? '' : <p className='log-message'>{systemLog}</p>}
         </div>  
     </main>
   )
