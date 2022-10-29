@@ -32,7 +32,7 @@ function App() {
     const symbolInput = targetInput.value
     if (!symbolInput.length) return setLog('please enter symbol before submit')
 
-    const API_ENDPOINT = `/api/${symbolInput}/eod`
+    const API_ENDPOINT = `/api/${symbolInput.trim().toUpperCase()}/eod`
 
     let axiosRes
     setLog('fetching data ...')
