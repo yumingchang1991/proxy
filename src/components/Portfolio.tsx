@@ -9,11 +9,11 @@ import ETFDataTable from '../components/ETFDataTable'
 
 function App() {
   const [etfData, setEtfData] = useState<any[]>([])
+  const [logMessage, setLog] = useState('')
+  const [displayProgress, setDisplayProgress] = useState(false)
   const axiosPrivate = useAxiosPrivate()
   const navigate = useNavigate()
   const location = useLocation()
-  const [logMessage, setLog] = useState('')
-  const [displayProgress, setDisplayProgress] = useState(false)
 
   const formatRequestedETF = ({ symbol, date, close, dividend }: { symbol: string, date: string, close: string, dividend: string }) => {
     const formatDate = new Date(date).toLocaleDateString()
@@ -42,7 +42,6 @@ function App() {
       axiosRes = await axiosPrivate.get(API_ENDPOINT, { withCredentials: true })
     } catch (err) {
       // the error here is unexpected error
-      // if it is a handled error from server, it will be a valid JSON object with status === error
       console.error(err)
       return navigate('/proxy-frontend/login', { state: { from: location }, replace: true })
     }
@@ -50,6 +49,7 @@ function App() {
     // if program reaches here then there is axiosRes
     setLog('')
     setDisplayProgress(preState => !preState)
+    // if it is a handled error from server, it will be a valid JSON object with status === error
     if (axiosRes.data.status === 'error' ) return setLog(axiosRes.data.message)
 
     const requestedETF = formatRequestedETF(axiosRes.data)
