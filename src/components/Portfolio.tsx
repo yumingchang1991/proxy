@@ -50,7 +50,7 @@ function App() {
     // if program reaches here then there is axiosRes
     setLog('')
     setDisplayProgress(preState => !preState)
-    if (axiosRes.data.status === 'error' ) return setLog(axiosRes.data.messag)
+    if (axiosRes.data.status === 'error' ) return setLog(axiosRes.data.message)
 
     const requestedETF = formatRequestedETF(axiosRes.data)
 
