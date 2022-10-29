@@ -1,6 +1,7 @@
 import '../styles/portfolio.css'
 import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { Box, LinearProgress } from '@mui/material'
 import useAxiosPrivate from '../hooks/useAxiosPrivate'
 import InputSymbol from '../components/InputSymbol'
 import SendButton from '../components/SendButton'
@@ -11,46 +12,72 @@ function App() {
   const axiosPrivate = useAxiosPrivate()
   const navigate = useNavigate()
   const location = useLocation()
+  const [logMessage, setLog] = useState('')
+  const [displayProgress, setDisplayProgress] = useState(false)
+
+  const formatRequestedETF = ({ symbol, date, close, dividend }: { symbol: string, date: string, close: string, dividend: string }) => {
+    const formatDate = new Date(date).toLocaleDateString()
+    return {
+      symbol,
+      date: formatDate,
+      close,
+      dividend
+    }
+  }
+
+  const submitSymbolToProxyServer = async () => {
+    const targetInput: HTMLInputElement | null = document.querySelector('#aws-form input')
+    if (!targetInput) return setLog('please refresh and try again')
+  
+    const symbolInput = targetInput.value
+    if (!symbolInput.length) return setLog('please enter symbol before submit')
+
+    const API_ENDPOINT = `/api/${symbolInput}/eod`
+
+    let axiosRes
+    setLog('fetching data ...')
+    setDisplayProgress(preState => !preState)
+
+    try {
+      axiosRes = await axiosPrivate.get(API_ENDPOINT, { withCredentials: true })
+    } catch (err) {
+      // the error here is unexpected error
+      // if it is a handled error from server, it will be a valid JSON object with status === error
+      console.error(err)
+      return navigate('/proxy-frontend/login', { state: { from: location }, replace: true })
+    }
+    
+    // if program reaches here then there is axiosRes
+    setLog('')
+    setDisplayProgress(preState => !preState)
+    if (axiosRes.data.status === 'error' ) return setLog(axiosRes.data.messag)
+
+    const requestedETF = formatRequestedETF(axiosRes.data)
+
+    const sameETFs = etfData.filter((etf: any) => etf.symbol === requestedETF.symbol)
+    if (sameETFs.length > 0) {
+      const sameDateETFs = sameETFs.filter((etf: any) => etf.date === requestedETF.date)
+      if (sameDateETFs.length > 0) return
+    }
+
+    setEtfData((existingData: any) => {
+      return [...existingData, requestedETF]
+    })
+    
+  }
 
   return (
     <main className="portfolio-section">
       <h2>Please enter US ETF Symbol</h2>
+      {
+        displayProgress
+          ? <Box width='50%'><LinearProgress /></Box>
+          : ''
+      }
       <form id="aws-form">
         <InputSymbol />
-        <SendButton eventHandler={
-          async function submitSymbolToProxyServer() {
-            const targetInput: HTMLInputElement | null = document.querySelector('#aws-form input')
-            if (targetInput) {
-              const symbol = targetInput.value
-              const API_ENDPOINT = `/api/${symbol}/eod`
-
-              try {
-                const axiosRes = await axiosPrivate.get(API_ENDPOINT, { withCredentials: true })
-                const { symbol, date, close, dividend } = axiosRes.data
-                const formatDate = new Date(date).toLocaleDateString()
-                const requestedETF = {
-                  symbol,
-                  date: formatDate,
-                  close,
-                  dividend
-                }
-
-                const sameETFs = etfData.filter((etf: any) => etf.symbol === requestedETF.symbol)
-                if (sameETFs.length > 0) {
-                  const sameDateETFs = sameETFs.filter((etf: any) => etf.date === requestedETF.date)
-                  if (sameDateETFs.length > 0) return
-                }
-
-                setEtfData((existingData: any) => {
-                  return [...existingData, requestedETF]
-                })
-              } catch (err) {
-                console.error(err)
-                navigate('/proxy-frontend/login', { state: { from: location }, replace: true })
-              }
-            }
-          }
-        } />
+        {logMessage === '' ? '' : <p className='log-message'>{logMessage}</p>}
+        <SendButton eventHandler={submitSymbolToProxyServer} />
       </form>
       <ETFDataTable etfArray={etfData} />
     </main>
