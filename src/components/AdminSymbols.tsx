@@ -3,9 +3,12 @@ import { useState } from 'react'
 import useAxiosPrivate from '../hooks/useAxiosPrivate'
 import LinearProgress from '@mui/material/LinearProgress'
 import { Box } from '@mui/material'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 export default function AdminSymbols () {
   const axiosPrivate = useAxiosPrivate()
+  const navigate = useNavigate()
+  const location = useLocation()
   const [systemLog, setLog] = useState('')
   const [displayLinearProgress, setDisplay] = useState(false)
 
@@ -55,6 +58,9 @@ export default function AdminSymbols () {
 
     if (axiosRes) {
       toggleDisplayProgress()
+      if (axiosRes.status === 401) {
+        return navigate('/proxy-frontend/login', { state: { from: location }, replace: true })
+      }
       setLog(axiosRes.data.message)
     }
   }

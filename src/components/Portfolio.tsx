@@ -50,6 +50,9 @@ function App() {
     setLog('')
     setDisplayProgress(preState => !preState)
     // if it is a handled error from server, it will be a valid JSON object with status === error
+    if (axiosRes.status === 401) {
+      return navigate('/proxy-frontend/login', { state: { from: location }, replace: true })
+    }
     if (axiosRes.data.status === 'error' ) return setLog(axiosRes.data.message)
 
     const requestedETF = formatRequestedETF(axiosRes.data)
