@@ -19,32 +19,34 @@ export default function Register () {
     if (password !== confirmPassword) {
       return setErrorMessage('make sure Password and Confirm Password the same')
     }
-    const usernameElement = document.querySelector('#username') as HTMLInputElement
-    const newUser = {
-      username: usernameElement.value,
-      account,
-      password
-    }
-    axios
-      .post(
-        '/api/users',
-        JSON.stringify(newUser),
-        { 
-          headers: {
-            'Content-Type': 'application/json'
+    const usernameElement: HTMLInputElement | null = document.querySelector('#username')
+    if (usernameElement) {
+      const newUser = {
+        username: usernameElement.value,
+        account,
+        password
+      }
+      axios
+        .post(
+          '/api/users',
+          JSON.stringify(newUser),
+          {
+            headers: {
+              'Content-Type': 'application/json'
+            }
           }
-        }
-      )
-      .then(axiosRes => {
-        const apiRes = axiosRes.data
-        if (apiRes.status === 'error') return setErrorMessage(apiRes.message)
-        if (apiRes.status === 'success') {
-          navigate('/proxy-frontend/login')
-        }
-      })
-      .catch(e => {
-        setErrorMessage(e)
-      })
+        )
+        .then(axiosRes => {
+          const apiRes = axiosRes.data
+          if (apiRes.status === 'error') return setErrorMessage(apiRes.message)
+          if (apiRes.status === 'success') {
+            navigate('/proxy-frontend/login')
+          }
+        })
+        .catch(e => {
+          setErrorMessage(e)
+        })
+    }
   }
 
   return (

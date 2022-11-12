@@ -13,10 +13,11 @@ export default function AdminSymbols () {
   const [displayLinearProgress, setDisplay] = useState(false)
 
   const toggleDisplayProgress = () => {
-    const fileInput: HTMLInputElement = document.querySelector('input#file-input') as HTMLInputElement
-    const uploadButton: HTMLButtonElement = document.querySelector('button.upload-button') as HTMLButtonElement
-    fileInput.disabled = !fileInput.disabled
-    uploadButton.disabled = !uploadButton.disabled
+    const fileInput: HTMLInputElement | null = document.querySelector('input#file-input')
+    const uploadButton: HTMLButtonElement | null = document.querySelector('button.upload-button')
+    
+    if (fileInput) fileInput.disabled = !fileInput.disabled
+    if (uploadButton) uploadButton.disabled = !uploadButton.disabled
     setDisplay(prevState => !prevState)
   }
 
