@@ -26,7 +26,7 @@ const useAxiosPrivate = () => {
       response => response,
       async (err) => {
         const preRequest = err?.config
-        if (err?.response?.status === 403 && !preRequest?.sent) {
+        if (err?.response?.status === 401 && !preRequest?.sent) {
           preRequest.sent = true
           const newAccessToken = await refresh()
           preRequest.headers['Authorization'] = `Bearer ${newAccessToken}`

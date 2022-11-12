@@ -41,8 +41,6 @@ function App() {
     try {
       axiosRes = await axiosPrivate.get(API_ENDPOINT, { withCredentials: true })
     } catch (err) {
-      // the error here is unexpected error
-      console.error(err)
       return navigate('/proxy-frontend/login', { state: { from: location }, replace: true })
     }
     
@@ -71,7 +69,7 @@ function App() {
 
   return (
     <main className="portfolio-section">
-      <h2>Please enter US ETF Symbol</h2>
+      <h2>ETF Tracker</h2>
       {
         displayProgress
           ? <Box width='50%'><LinearProgress /></Box>

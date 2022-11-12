@@ -4,7 +4,7 @@ import useAuth from './useAuth'
 const REFRESH_ENDPOINT = '/api/auth/refresh'
 
 const useRefreshToken = () => {
-  const { setAuth } = useAuth()
+  const { auth, setAuth } = useAuth()
 
   const refresh = async () => {
     const axiosRes = await axios.get(REFRESH_ENDPOINT, {
@@ -16,7 +16,6 @@ const useRefreshToken = () => {
       })
       return axiosRes.data.accessToken
     }
-
   }
   
   return refresh
